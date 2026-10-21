@@ -6,6 +6,7 @@ import random
 CREATURES = {
     "claxon": {"name": "Clarion", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
     "mutter": {"name": "Murmur", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
+    "lilt": {"name": "Cadence", "type": "song", "hp": 32, "atk": 8, "words": ["croon", "hum"]},
 }
 
 WORDS = {
@@ -13,6 +14,7 @@ WORDS = {
     "heckle": {"name": "Jeer", "power": 6, "type": "shout"},
     "shush": {"name": "Shush", "power": 7, "type": "hush"},
     "hum": {"name": "Drone", "power": 5, "type": "song"},
+    "croon": {"name": "Refrain", "power": 8, "type": "song"},
 }
 
 # shout drowns song, song soothes hush, hush swallows shout
@@ -52,23 +54,53 @@ def strike(attacker, target, word):
     print(f"{attacker['name']} uses {move['name']} for {damage}.")
 
 
-def fight(player, foe):
-    me = player["party"][0]
+def choose_creature(party, prompt):
     while True:
+        print(prompt)
+        for i in range(len(party)):
+            monster = party[i]
+            print(f"{i + 1}. {monster['name']} {monster['hp']}/{monster['max']}")
+        answer = input("> ")
+        if answer.isdigit():
+            index = int(answer) - 1
+            if 0 <= index < len(party) and party[index]["hp"] > 0:
+                return index
+        print("Pick a number from the list.")
+
+
+def fight(player, foe):
+    party = player["party"]
+    active = 0
+    while True:
+        if party[active]["hp"] <= 0:
+            for i in range(len(party)):
+                if party[i]["hp"] > 0:
+                    active = i
+                    break
+            else:
+                print("Your throat is empty.")
+                return
+
+        me = party[active]
         print()
         print(f"{me['name']} {me['hp']}/{me['max']}   vs   {foe['name']} {foe['hp']}/{foe['max']}")
-        print("1. speak   2. run   3. quit")
+        print("1. speak   2. switch   3. run   4. quit")
         choice = input("> ")
 
-        if choice == "3":
+        if choice == "4":
             return
-
-        if choice == "2":
+        if choice == "3":
             print("You get out of the grass.")
             return
-
+        if choice == "2":
+            active = choose_creature(party, "Send out who?")
+            me = party[active]
+            strike(foe, me, random.choice(foe["words"]))
+            if me["hp"] <= 0:
+                print(f"{me['name']} goes quiet.")
+            continue
         if choice != "1":
-            print("1, 2 or 3.")
+            print("1, 2, 3 or 4.")
             continue
 
         print("Which word?")
@@ -82,12 +114,14 @@ def fight(player, foe):
         strike(me, foe, me["words"][int(pick) - 1])
         if foe["hp"] <= 0:
             print(f"{foe['name']} goes quiet.")
+            if len(party) < 3:
+                party.append(foe)
+                print(f"{foe['name']} joins you.")
             return
 
         strike(foe, me, random.choice(foe["words"]))
         if me["hp"] <= 0:
             print(f"{me['name']} goes quiet.")
-            return
 
 
 AREAS = {
@@ -144,10 +178,12 @@ def main():
         if choice == "1":
             name = input("Name: ")
             print("Pick a creature.")
-            print("1. Claxon   2. Mutter")
+            print("1. Clarion   2. Murmur   3. Cadence")
             pick = input("> ")
             if pick == "2":
                 starter = "mutter"
+            elif pick == "3":
+                starter = "lilt"
             else:
                 starter = "claxon"
             player = {"name": name, "party": [make_creature(starter)]}

@@ -1,65 +1,71 @@
-# 1stmvp
+# menu works
 # throw words at things
 
 import random
 
-# TODO: move the data into a file later
 CREATURES = {
-    "claxon": {"name": "Claxon", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
-    "mutter": {"name": "Mutter", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
+    "claxon": {"name": "Clarion", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
+    "mutter": {"name": "Murmur", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
 }
 
 WORDS = {
-    "yell": {"name": "Yell", "power": 9},
-    "heckle": {"name": "Heckle", "power": 6},
+    "yell": {"name": "Outcry", "power": 9},
+    "heckle": {"name": "Jeer", "power": 6},
     "shush": {"name": "Shush", "power": 7},
-    "hum": {"name": "Hum", "power": 5},
+    "hum": {"name": "Drone", "power": 5},
 }
 
 
-def make_monster(key):
-    thing = CREATURES[key]
-    return {"name": thing["name"], "hp": thing["hp"], "atk": thing["atk"], "words": thing["words"]}
+def make_creature(key):
+    base = CREATURES[key]
+    return {
+        "name": base["name"],
+        "hp": base["hp"],
+        "atk": base["atk"],
+        "words": base["words"],
+    }
 
 
-def hit(attacker, defender, word):
-    damage = WORDS[word]["power"] + random.randint(0, 3)
-    defender["hp"] = defender["hp"] - damage
-    print(attacker["name"] + " uses " + WORDS[word]["name"] + " for " + str(damage) + ".")
+def strike(attacker, target, word):
+    damage = WORDS[word]["power"] + attacker["atk"] // 2 + random.randint(0, 3)
+    target["hp"] = target["hp"] - damage
+    print(f"{attacker['name']} uses {WORDS[word]['name']} for {damage}.")
 
 
-def fight(player, enemy):
+def fight(player, foe):
     me = player["party"][0]
     while True:
         print()
-        print(me["name"] + " " + str(me["hp"]) + "   vs   " + enemy["name"] + " " + str(enemy["hp"]))
+        print(f"{me['name']} {me['hp']}   vs   {foe['name']} {foe['hp']}")
         print("1. speak   2. run")
         choice = input("> ")
 
         if choice == "2":
             print("You back away.")
-            hit(enemy, me, random.choice(enemy["words"]))
+            strike(foe, me, random.choice(foe["words"]))
             return
 
-        if choice == "1":
-            print("Which word?")
-            for i in range(len(me["words"])):
-                print(str(i + 1) + ". " + WORDS[me["words"][i]]["name"])
-            pick = int(input("> "))
-            hit(me, enemy, me["words"][pick - 1])
-            if enemy["hp"] <= 0:
-                print(enemy["name"] + " goes quiet.")
-                return
-            hit(enemy, me, random.choice(enemy["words"]))
-            if me["hp"] <= 0:
-                print(me["name"] + " goes quiet.")
-                return
-        else:
+        if choice != "1":
             print("1 or 2.")
-            hit(enemy, me, random.choice(enemy["words"]))
-            if me["hp"] <= 0:
-                print(me["name"] + " goes quiet.")
-                return
+            continue
+
+        print("Which word?")
+        for i in range(len(me["words"])):
+            print(f"{i + 1}. {WORDS[me['words'][i]]['name']}")
+        pick = input("> ")
+        if not pick.isdigit() or int(pick) < 1 or int(pick) > len(me["words"]):
+            print("That is not a word.")
+            continue
+
+        strike(me, foe, me["words"][int(pick) - 1])
+        if foe["hp"] <= 0:
+            print(f"{foe['name']} goes quiet.")
+            return
+
+        strike(foe, me, random.choice(foe["words"]))
+        if me["hp"] <= 0:
+            print(f"{me['name']} goes quiet.")
+            return
 
 
 def room(player):
@@ -76,7 +82,7 @@ def room(player):
         elif command == "north":
             print("The gate is shut.")
         elif command == "fight":
-            fight(player, make_monster("mutter"))
+            fight(player, make_creature("mutter"))
             return
         elif command == "quit":
             return
@@ -85,28 +91,31 @@ def room(player):
 
 
 def main():
-    print("RNG")
-    print("roll of the dice")
-    print("1. new game")
-    print("2. quit")
-    choice = input("> ")
+    while True:
+        print("RNG")
+        print("roll of the dice")
+        print()
+        print("1. new game")
+        print("2. quit")
+        choice = input("> ")
 
-    if choice == "1":
-        name = input("Name: ")
-        print("Pick a creature.")
-        print("1. Claxon   2. Mutter")
-        pick = input("> ")
-        if pick == "2":
-            starter = "mutter"
+        if choice == "1":
+            name = input("Name: ")
+            print("Pick a creature.")
+            print("1. Claxon   2. Mutter")
+            pick = input("> ")
+            if pick == "2":
+                starter = "mutter"
+            else:
+                starter = "claxon"
+            player = {"name": name, "party": [make_creature(starter)]}
+            print(f"{name} takes the {player['party'][0]['name']}.")
+            room(player)
+        elif choice == "2":
+            print("The dice go back in the cup.")
+            return
         else:
-            starter = "claxon"
-        player = {"name": name, "party": [make_monster(starter)]}
-        print(name + " takes the " + player["party"][0]["name"] + ".")
-        room(player)
-    elif choice == "2":
-        print("The dice go back in the cup.")
-    else:
-        print("Pick 1 or 2.")
+            print("Pick 1 or 2.")
 
 
 main()

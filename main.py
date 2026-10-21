@@ -203,7 +203,7 @@ def explore(player, spot):
             if command == gate and here["name"] not in player["solved"]:
                 print(here["puzzle"]["prompt"])
                 answer = input("> ")
-                if answer == here["puzzle"]["answer"]:
+                if answer:
                     print("The gate opens.")
                     player["solved"].append(here["name"])
                     spot = here["exits"][command]

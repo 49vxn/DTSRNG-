@@ -163,8 +163,21 @@ AREAS = {
         "name": "The Crooked Mile",
         "text": "The road bends left and then left again. A brass-coloured thing is sitting on the verge.",
         "look": "The mile goes on. The grass is flattened where something has been sitting.",
-        "exits": {"south": "signpost"},
+        "exits": {"south": "signpost", "north": "archive"},
         "foe": "claxon",
+        "puzzle": {
+            "gate": "north",
+            "prompt": "A sentence is nailed across the gate. Put it in order: opens / the / gate / if / ask / you / nicely",
+            "answer": "the gate opens if you ask nicely",
+            "hint": "Start with the gate.",
+        },
+    },
+    "archive": {
+        "name": "The Drowned Archive",
+        "text": "A library under a foot of water. More shelves than room.",
+        "look": "The water is warm. Something is asleep on the desk.",
+        "exits": {"south": "mile"},
+        "foe": "mutter",
     },
 }
 
@@ -186,7 +199,18 @@ def explore(player, spot):
         elif command == "help":
             instructions()
         elif command in here["exits"]:
-            spot = here["exits"][command]
+            gate = here.get("puzzle", {}).get("gate")
+            if command == gate and here["name"] not in player["solved"]:
+                print(here["puzzle"]["prompt"])
+                answer = input("> ")
+                if answer == here["puzzle"]["answer"]:
+                    print("The gate opens.")
+                    player["solved"].append(here["name"])
+                    spot = here["exits"][command]
+                else:
+                    print("The gate does not move.")
+            else:
+                spot = here["exits"][command]
         elif command == "fight":
             fight(player, make_creature(here["foe"]))
         elif command == "quit":
@@ -224,7 +248,7 @@ def main():
                 starter = "lilt"
             else:
                 starter = "claxon"
-            player = {"name": name, "party": [make_creature(starter)]}
+            player = {"name": name, "party": [make_creature(starter)], "solved": []}
             print(f"{name} takes the {player['party'][0]['name']}.")
             explore(player, "signpost")
         elif choice == "2":

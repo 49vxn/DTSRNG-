@@ -168,7 +168,7 @@ AREAS = {
         "puzzle": {
             "gate": "north",
             "prompt": "A sentence is nailed across the gate. Put it in order: opens / the / gate / if / ask / you / nicely",
-            "answer": "the gate opens if you ask nicely",
+            "answers": ["the gate opens if you ask nicely", "if you ask nicely the gate opens"],
             "hint": "Start with the gate.",
         },
     },
@@ -180,6 +180,13 @@ AREAS = {
         "foe": "mutter",
     },
 }
+
+
+def normalise(text):
+    text = text.lower().strip()
+    for mark in ".,!?;:'\"-":
+        text = text.replace(mark, "")
+    return " ".join(text.split())
 
 
 def explore(player, spot):
@@ -203,7 +210,7 @@ def explore(player, spot):
             if command == gate and here["name"] not in player["solved"]:
                 print(here["puzzle"]["prompt"])
                 answer = input("> ")
-                if answer:
+                if normalise(answer) in [normalise(one) for one in here["puzzle"]["answers"]]:
                     print("The gate opens.")
                     player["solved"].append(here["name"])
                     spot = here["exits"][command]

@@ -1,4 +1,4 @@
-# menu works
+# hp
 # throw words at things
 
 import random
@@ -21,6 +21,7 @@ def make_creature(key):
     return {
         "name": base["name"],
         "hp": base["hp"],
+        "max": base["hp"],
         "atk": base["atk"],
         "words": base["words"],
     }
@@ -29,6 +30,8 @@ def make_creature(key):
 def strike(attacker, target, word):
     damage = WORDS[word]["power"] + attacker["atk"] // 2 + random.randint(0, 3)
     target["hp"] = target["hp"] - damage
+    if target["hp"] < 0:
+        target["hp"] = 0
     print(f"{attacker['name']} uses {WORDS[word]['name']} for {damage}.")
 
 
@@ -36,7 +39,7 @@ def fight(player, foe):
     me = player["party"][0]
     while True:
         print()
-        print(f"{me['name']} {me['hp']}   vs   {foe['name']} {foe['hp']}")
+        print(f"{me['name']} {me['hp']}/{me['max']}   vs   {foe['name']} {foe['hp']}/{foe['max']}")
         print("1. speak   2. run")
         choice = input("> ")
 

@@ -24,21 +24,28 @@ TYPE_BEATS = {
     "hush": "shout",
 }
 
+PHRASES = {
+    "claxon": {"name": "The Warning Bell", "power": 18, "type": "shout"},
+    "mutter": {"name": "Dead Air", "power": 14, "type": "hush"},
+    "lilt": {"name": "The Long Refrain", "power": 12, "type": "song"},
+}
+
 
 def make_creature(key):
     base = CREATURES[key]
     return {
+        "key": key,
         "name": base["name"],
         "type": base["type"],
         "hp": base["hp"],
         "max": base["hp"],
         "atk": base["atk"],
         "words": base["words"],
+        "phrase_used": False,
     }
 
 
-def strike(attacker, target, word):
-    move = WORDS[word]
+def strike(attacker, target, move):
     damage = move["power"] + attacker["atk"] // 2 + random.randint(0, 3)
     if TYPE_BEATS.get(move["type"]) == target["type"]:
         damage = damage * 2
@@ -84,23 +91,41 @@ def fight(player, foe):
         me = party[active]
         print()
         print(f"{me['name']} {me['hp']}/{me['max']}   vs   {foe['name']} {foe['hp']}/{foe['max']}")
-        print("1. speak   2. switch   3. run   4. quit")
+        print("1. speak   2. phrase   3. switch   4. run   5. quit")
         choice = input("> ")
 
-        if choice == "4":
+        if choice == "5":
             return
-        if choice == "3":
+        if choice == "4":
             print("You get out of the grass.")
             return
-        if choice == "2":
+        if choice == "3":
             active = choose_creature(party, "Send out who?")
             me = party[active]
-            strike(foe, me, random.choice(foe["words"]))
+            strike(foe, me, WORDS[random.choice(foe["words"])])
+            if me["hp"] <= 0:
+                print(f"{me['name']} goes quiet.")
+            continue
+        if choice == "2":
+            if me["phrase_used"]:
+                print("The phrase is spent.")
+                continue
+            me["phrase_used"] = True
+            phrase = PHRASES[me["key"]]
+            print(f"{me['name']} speaks its phrase.")
+            strike(me, foe, phrase)
+            if foe["hp"] <= 0:
+                print(f"{foe['name']} goes quiet.")
+                if len(party) < 3:
+                    party.append(foe)
+                    print(f"{foe['name']} joins you.")
+                return
+            strike(foe, me, WORDS[random.choice(foe["words"])])
             if me["hp"] <= 0:
                 print(f"{me['name']} goes quiet.")
             continue
         if choice != "1":
-            print("1, 2, 3 or 4.")
+            print("1, 2, 3, 4 or 5.")
             continue
 
         print("Which word?")
@@ -111,7 +136,7 @@ def fight(player, foe):
             print("That is not a word.")
             continue
 
-        strike(me, foe, me["words"][int(pick) - 1])
+        strike(me, foe, WORDS[me["words"][int(pick) - 1]])
         if foe["hp"] <= 0:
             print(f"{foe['name']} goes quiet.")
             if len(party) < 3:
@@ -119,7 +144,7 @@ def fight(player, foe):
                 print(f"{foe['name']} joins you.")
             return
 
-        strike(foe, me, random.choice(foe["words"]))
+        strike(foe, me, WORDS[random.choice(foe["words"])])
         if me["hp"] <= 0:
             print(f"{me['name']} goes quiet.")
 

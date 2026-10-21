@@ -1,5 +1,5 @@
-# hp
-# throw words at things
+# rng - roll of the dice
+# a text game about throwing words at things. run it with python main.py
 
 import random
 
@@ -40,8 +40,11 @@ def fight(player, foe):
     while True:
         print()
         print(f"{me['name']} {me['hp']}/{me['max']}   vs   {foe['name']} {foe['hp']}/{foe['max']}")
-        print("1. speak   2. run")
+        print("1. speak   2. run   3. quit")
         choice = input("> ")
+
+        if choice == "3":
+            return
 
         if choice == "2":
             print("You back away.")
@@ -49,7 +52,7 @@ def fight(player, foe):
             return
 
         if choice != "1":
-            print("1 or 2.")
+            print("1, 2 or 3.")
             continue
 
         print("Which word?")
@@ -121,4 +124,9 @@ def main():
             print("Pick 1 or 2.")
 
 
-main()
+if __name__ == "__main__":
+    try:
+        main()
+    except (EOFError, KeyboardInterrupt):
+        # closing the window or pressing ctrl-c should not dump a traceback
+        print("\nThe dice go back in the cup.")

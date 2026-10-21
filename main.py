@@ -73,22 +73,38 @@ def fight(player, foe):
             return
 
 
-def room(player):
-    print()
-    print("The Signpost Field")
-    print("A field of blank signpsots. The grass is wet. One road goes north.")
-    print("Something small is worrying at the grass. It looks up.")
-    print("Commands: look, north, fight, quit")
-
+def explore(player, spot):
     while True:
+        print()
+        if spot == "signpost":
+            print("The Signpost Field")
+            print("A field of blank signpsots. The grass is wet. One road goes north.")
+            print("Something small is worrying at the grass. It looks up.")
+            print("Commands: look, north, fight, quit")
+        else:
+            print("The Crooked Mile")
+            print("The road bends left and then left again. A brass-coloured thing is sitting on the verge.")
+            print("Commands: look, south, fight, quit")
+
         command = input("> ").lower()
         if command == "look":
-            print("The signposts have no names on them. The north road is shut by a gate.")
+            if spot == "signpost":
+                print("The signposts have no names on them. The north road is shut by a gate.")
+            else:
+                print("The mile goes on. The grass is flattened where something has been sitting.")
         elif command == "north":
-            print("The gate is shut.")
+            if spot == "signpost":
+                spot = "mile"
+            else:
+                print("The road ends here.")
+        elif command == "south":
+            if spot == "mile":
+                spot = "signpost"
+            else:
+                print("There is nothing south.")
         elif command == "fight":
-            fight(player, make_creature("mutter"))
-            return
+            foe = "mutter" if spot == "signpost" else "claxon"
+            fight(player, make_creature(foe))
         elif command == "quit":
             return
         else:
@@ -115,7 +131,7 @@ def main():
                 starter = "claxon"
             player = {"name": name, "party": [make_creature(starter)]}
             print(f"{name} takes the {player['party'][0]['name']}.")
-            room(player)
+            explore(player, "signpost")
         elif choice == "2":
             print("The dice go back in the cup.")
             return

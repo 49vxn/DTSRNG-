@@ -4,17 +4,17 @@
 import random
 
 CREATURES = {
-    "claxon": {"name": "Clarion", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
-    "mutter": {"name": "Murmur", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
-    "lilt": {"name": "Cadence", "type": "song", "hp": 32, "atk": 8, "words": ["croon", "hum"]},
+    "claxon": {"name": "Claxon", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
+    "mutter": {"name": "Mutter", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
+    "lilt": {"name": "Lilt", "type": "song", "hp": 32, "atk": 8, "words": ["croon", "hum"]},
 }
 
 WORDS = {
-    "yell": {"name": "Outcry", "power": 9, "type": "shout"},
-    "heckle": {"name": "Jeer", "power": 6, "type": "shout"},
+    "yell": {"name": "Yell", "power": 9, "type": "shout"},
+    "heckle": {"name": "Heckle", "power": 6, "type": "shout"},
     "shush": {"name": "Shush", "power": 7, "type": "hush"},
-    "hum": {"name": "Drone", "power": 5, "type": "song"},
-    "croon": {"name": "Refrain", "power": 8, "type": "song"},
+    "hum": {"name": "Hum", "power": 5, "type": "song"},
+    "croon": {"name": "Croon", "power": 8, "type": "song"},
 }
 
 # shout drowns song, song soothes hush, hush swallows shout
@@ -25,9 +25,9 @@ TYPE_BEATS = {
 }
 
 PHRASES = {
-    "claxon": {"name": "The Warning Bell", "power": 18, "type": "shout"},
+    "claxon": {"name": "Sound the Alarm", "power": 18, "type": "shout"},
     "mutter": {"name": "Dead Air", "power": 14, "type": "hush"},
-    "lilt": {"name": "The Long Refrain", "power": 12, "type": "song"},
+    "lilt": {"name": "Lullaby", "power": 12, "type": "song"},
 }
 
 
@@ -49,10 +49,10 @@ def strike(attacker, target, move):
     damage = move["power"] + attacker["atk"] // 2 + random.randint(0, 3)
     if TYPE_BEATS.get(move["type"]) == target["type"]:
         damage = damage * 2
-        print("The word hits deep.")
+        print("It lands hard.")
     elif TYPE_BEATS.get(target["type"]) == move["type"]:
         damage = damage // 2
-        print("The word glances off.")
+        print("It barely lands.")
     if damage < 1:
         damage = 1
     target["hp"] = target["hp"] - damage
@@ -85,12 +85,14 @@ def fight(player, foe):
                     active = i
                     break
             else:
-                print("Your throat is empty.")
+                print("You have no words left.")
                 return
 
         me = party[active]
         print()
         print(f"{me['name']} {me['hp']}/{me['max']}   vs   {foe['name']} {foe['hp']}/{foe['max']}")
+        next_move = random.choice(foe["words"])
+        print(f"The {foe['name']} is winding up: {WORDS[next_move]['name']}.")
         print("1. speak   2. phrase   3. switch   4. run   5. quit")
         choice = input("> ")
 
@@ -102,7 +104,7 @@ def fight(player, foe):
         if choice == "3":
             active = choose_creature(party, "Send out who?")
             me = party[active]
-            strike(foe, me, WORDS[random.choice(foe["words"])])
+            strike(foe, me, WORDS[next_move])
             if me["hp"] <= 0:
                 print(f"{me['name']} goes quiet.")
             continue
@@ -120,7 +122,7 @@ def fight(player, foe):
                     party.append(foe)
                     print(f"{foe['name']} joins you.")
                 return
-            strike(foe, me, WORDS[random.choice(foe["words"])])
+            strike(foe, me, WORDS[next_move])
             if me["hp"] <= 0:
                 print(f"{me['name']} goes quiet.")
             continue
@@ -144,7 +146,7 @@ def fight(player, foe):
                 print(f"{foe['name']} joins you.")
             return
 
-        strike(foe, me, WORDS[random.choice(foe["words"])])
+        strike(foe, me, WORDS[next_move])
         if me["hp"] <= 0:
             print(f"{me['name']} goes quiet.")
 
@@ -203,7 +205,7 @@ def main():
         if choice == "1":
             name = input("Name: ")
             print("Pick a creature.")
-            print("1. Clarion   2. Murmur   3. Cadence")
+            print("1. Claxon   2. Mutter   3. Lilt")
             pick = input("> ")
             if pick == "2":
                 starter = "mutter"

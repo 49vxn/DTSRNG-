@@ -4,15 +4,22 @@
 import random
 
 CREATURES = {
-    "claxon": {"name": "Clarion", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
-    "mutter": {"name": "Murmur", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
+    "claxon": {"name": "Clarion", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
+    "mutter": {"name": "Murmur", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
 }
 
 WORDS = {
-    "yell": {"name": "Outcry", "power": 9},
-    "heckle": {"name": "Jeer", "power": 6},
-    "shush": {"name": "Shush", "power": 7},
-    "hum": {"name": "Drone", "power": 5},
+    "yell": {"name": "Outcry", "power": 9, "type": "shout"},
+    "heckle": {"name": "Jeer", "power": 6, "type": "shout"},
+    "shush": {"name": "Shush", "power": 7, "type": "hush"},
+    "hum": {"name": "Drone", "power": 5, "type": "song"},
+}
+
+# shout drowns song, song soothes hush, hush swallows shout
+TYPE_BEATS = {
+    "shout": "song",
+    "song": "hush",
+    "hush": "shout",
 }
 
 
@@ -20,6 +27,7 @@ def make_creature(key):
     base = CREATURES[key]
     return {
         "name": base["name"],
+        "type": base["type"],
         "hp": base["hp"],
         "max": base["hp"],
         "atk": base["atk"],
@@ -28,11 +36,20 @@ def make_creature(key):
 
 
 def strike(attacker, target, word):
-    damage = WORDS[word]["power"] + attacker["atk"] // 2 + random.randint(0, 3)
+    move = WORDS[word]
+    damage = move["power"] + attacker["atk"] // 2 + random.randint(0, 3)
+    if TYPE_BEATS.get(move["type"]) == target["type"]:
+        damage = damage * 2
+        print("The word hits deep.")
+    elif TYPE_BEATS.get(target["type"]) == move["type"]:
+        damage = damage // 2
+        print("The word glances off.")
+    if damage < 1:
+        damage = 1
     target["hp"] = target["hp"] - damage
     if target["hp"] < 0:
         target["hp"] = 0
-    print(f"{attacker['name']} uses {WORDS[word]['name']} for {damage}.")
+    print(f"{attacker['name']} uses {move['name']} for {damage}.")
 
 
 def fight(player, foe):

@@ -183,6 +183,8 @@ def explore(player, spot):
 
         if command == "look":
             print(here["look"])
+        elif command == "help":
+            instructions()
         elif command in here["exits"]:
             spot = here["exits"][command]
         elif command == "fight":
@@ -193,13 +195,22 @@ def explore(player, spot):
             print("Nothing answers.")
 
 
+def instructions():
+    print()
+    print("You are a roller. Words fight for you, in turns.")
+    print("Shout beats song, song beats hush, hush beats shout.")
+    print("Every creature has two words and one phrase. A phrase works once per fight.")
+    print("Commands: look, go north, go south, help, fight, quit")
+
+
 def main():
     while True:
         print("RNG")
         print("roll of the dice")
         print()
         print("1. new game")
-        print("2. quit")
+        print("2. how to play")
+        print("3. quit")
         choice = input("> ")
 
         if choice == "1":
@@ -217,10 +228,12 @@ def main():
             print(f"{name} takes the {player['party'][0]['name']}.")
             explore(player, "signpost")
         elif choice == "2":
+            instructions()
+        elif choice == "3":
             print("The dice go back in the cup.")
             return
         else:
-            print("Pick 1 or 2.")
+            print("Pick 1, 2 or 3.")
 
 
 if __name__ == "__main__":

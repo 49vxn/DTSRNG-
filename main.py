@@ -47,8 +47,7 @@ def fight(player, foe):
             return
 
         if choice == "2":
-            print("You back away.")
-            strike(foe, me, random.choice(foe["words"]))
+            print("You get out of the grass.")
             return
 
         if choice != "1":

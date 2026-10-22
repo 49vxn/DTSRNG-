@@ -7,6 +7,7 @@ CREATURES = {
     "claxon": {"name": "Claxon", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
     "mutter": {"name": "Mutter", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
     "lilt": {"name": "Lilt", "type": "song", "hp": 32, "atk": 8, "words": ["croon", "hum"]},
+    "yawp": {"name": "Yawp", "type": "shout", "hp": 36, "atk": 10, "words": ["yell", "plain"]},
 }
 
 WORDS = {
@@ -15,6 +16,7 @@ WORDS = {
     "shush": {"name": "Shush", "power": 7, "type": "hush"},
     "hum": {"name": "Hum", "power": 5, "type": "song"},
     "croon": {"name": "Croon", "power": 8, "type": "song"},
+    "plain": {"name": "Plain Talk", "power": 7, "type": "plain"},
 }
 
 # shout drowns song, song soothes hush, hush swallows shout
@@ -28,6 +30,7 @@ PHRASES = {
     "claxon": {"name": "Sound the Alarm", "power": 18, "type": "shout"},
     "mutter": {"name": "Dead Air", "power": 14, "type": "hush"},
     "lilt": {"name": "Lullaby", "power": 12, "type": "song"},
+    "yawp": {"name": "Foghorn", "power": 20, "type": "shout"},
 }
 
 
@@ -174,10 +177,22 @@ AREAS = {
     },
     "archive": {
         "name": "The Drowned Archive",
-        "text": "A library under a foot of water. More shelves than room.",
-        "look": "The water is warm. Something is asleep on the desk.",
-        "exits": {"south": "mile"},
-        "foe": "mutter",
+        "text": "A library under a foot of water. The shelves go down further than the room. A drain is set in the floor, and a sentence is carved around it.",
+        "look": "The water is warm. Something with a foghorn throat is asleep on the desk.",
+        "exits": {"south": "mile", "north": "market"},
+        "foe": "yawp",
+        "puzzle": {
+            "gate": "north",
+            "prompt": "The drain says: Between you and ___, the archive is drowning.",
+            "answers": ["me"],
+            "hint": "It is not I.",
+        },
+    },
+    "market": {
+        "name": "The Market of Small Lies",
+        "text": "A row of stalls selling words by the letter. Most of them are closed.",
+        "look": "The signs are spelled wrong on purpose.",
+        "exits": {"south": "archive"},
     },
 }
 

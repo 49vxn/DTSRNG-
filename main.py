@@ -201,6 +201,13 @@ AREAS = {
 }
 
 
+def show_party(player):
+    print(f"{player['name']}'s words:")
+    for monster in player["party"]:
+        print(f"  {monster['name']} ({monster['type']}) {monster['hp']}/{monster['max']}")
+        print(f"    phrase: {PHRASES[monster['key']]['name']}")
+
+
 def normalise(text):
     text = text.lower().strip()
     for mark in ".,!?;:'\"-":
@@ -224,6 +231,8 @@ def explore(player, spot):
             print(here["look"])
         elif command == "help":
             instructions()
+        elif command == "party":
+            show_party(player)
         elif command in here["exits"]:
             gate = here.get("puzzle", {}).get("gate")
             if command == gate and here["name"] not in player["solved"]:
@@ -251,7 +260,7 @@ def instructions():
     print("You are a roller. Words fight for you, in turns.")
     print("Shout beats song, song beats hush, hush beats shout.")
     print("Every creature has two words and one phrase. A phrase works once per fight.")
-    print("Commands: look, go north, go south, help, fight, quit")
+    print("Commands: look, go north, go south, party, help, fight, quit")
 
 
 def main():

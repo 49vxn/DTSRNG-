@@ -3,6 +3,8 @@
 
 import random
 
+MAX_PARTY = 5
+
 CREATURES = {
     "claxon": {"name": "Claxon", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
     "mutter": {"name": "Mutter", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
@@ -78,7 +80,7 @@ def choose_creature(party, prompt):
         print("Pick a number from the list.")
 
 
-def fight(player, foe):
+def fight(player, foe, can_recruit=False):
     party = player["party"]
     active = 0
     while True:
@@ -121,7 +123,7 @@ def fight(player, foe):
             strike(me, foe, phrase)
             if foe["hp"] <= 0:
                 print(f"{foe['name']} goes quiet.")
-                if len(party) < 3:
+                if can_recruit and len(party) < MAX_PARTY:
                     party.append(foe)
                     print(f"{foe['name']} joins you.")
                 return
@@ -144,7 +146,7 @@ def fight(player, foe):
         strike(me, foe, WORDS[me["words"][int(pick) - 1]])
         if foe["hp"] <= 0:
             print(f"{foe['name']} goes quiet.")
-            if len(party) < 3:
+            if can_recruit and len(party) < MAX_PARTY:
                 party.append(foe)
                 print(f"{foe['name']} joins you.")
             return
@@ -181,6 +183,7 @@ AREAS = {
         "look": "The water is warm. Something with a foghorn throat is asleep on the desk.",
         "exits": {"south": "mile", "north": "market"},
         "foe": "yawp",
+        "recruit": True,
         "puzzle": {
             "gate": "north",
             "prompt": "The drain says: Between you and ___, the archive is drowning.",
@@ -234,7 +237,7 @@ def explore(player, spot):
             else:
                 spot = here["exits"][command]
         elif command == "fight":
-            fight(player, make_creature(here["foe"]))
+            fight(player, make_creature(here["foe"]), here.get("recruit", False))
         elif command == "quit":
             return
         else:

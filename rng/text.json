@@ -1,0 +1,902 @@
+{
+  "version": 2,
+  "groups": [
+    {
+      "id": "title",
+      "label": "Title and menu",
+      "entries": [
+        {
+          "key": "title.name",
+          "label": "Game title",
+          "context": "Title screen",
+          "value": "RNG",
+          "placeholders": []
+        },
+        {
+          "key": "title.subtitle",
+          "label": "Subtitle",
+          "context": "Title screen",
+          "value": "roll of the dice",
+          "placeholders": []
+        },
+        {
+          "key": "menu.new_game",
+          "label": "New game option",
+          "context": "Title menu",
+          "value": "new game",
+          "placeholders": []
+        },
+        {
+          "key": "menu.continue",
+          "label": "Continue option",
+          "context": "Title menu",
+          "value": "continue",
+          "placeholders": []
+        },
+        {
+          "key": "menu.how_to_play",
+          "label": "How to play option",
+          "context": "Title menu",
+          "value": "how to play",
+          "placeholders": []
+        },
+        {
+          "key": "menu.quit",
+          "label": "Quit option",
+          "context": "Title menu",
+          "value": "quit",
+          "placeholders": []
+        },
+        {
+          "key": "menu.hint",
+          "label": "Restart hint",
+          "context": "Title menu",
+          "value": "type restart at any time to start again",
+          "placeholders": []
+        },
+        {
+          "key": "menu.invalid",
+          "label": "Invalid menu choice",
+          "context": "Title menu",
+          "value": "Pick 1, 2, 3 or 4.",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "label": "New game",
+      "entries": [
+        {
+          "key": "start.name_prompt",
+          "label": "Name prompt",
+          "context": "New game",
+          "value": "Your name: ",
+          "placeholders": []
+        },
+        {
+          "key": "start.pick_two",
+          "label": "Starter choice",
+          "context": "New game",
+          "value": "Three creatures are waiting on the table. Each one fights with the words it knows. Pick two.",
+          "placeholders": []
+        },
+        {
+          "key": "start.starters",
+          "label": "Starter list",
+          "context": "New game",
+          "value": "1. {claxon} ({claxon_type})   2. {mutter} ({mutter_type})   3. {lilt} ({lilt_type})",
+          "placeholders": [
+            "claxon",
+            "claxon_type",
+            "mutter",
+            "mutter_type",
+            "lilt",
+            "lilt_type"
+          ]
+        },
+        {
+          "key": "start.and_one",
+          "label": "Second starter prompt",
+          "context": "New game",
+          "value": "And one more to stand beside it.",
+          "placeholders": []
+        },
+        {
+          "key": "start.chosen",
+          "label": "Starter confirmation",
+          "context": "New game",
+          "value": "{name} takes the {first} and the {second}. Type help at any prompt for the rules.",
+          "placeholders": [
+            "name",
+            "first",
+            "second"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "help",
+      "label": "How to play",
+      "entries": [
+        {
+          "key": "help.intro",
+          "label": "Opening help line",
+          "context": "How to play",
+          "value": "You are a roller. Your creatures fight with words, in turns, and you choose one word a turn.",
+          "placeholders": []
+        },
+        {
+          "key": "help.types",
+          "label": "Type triangle",
+          "context": "How to play",
+          "value": "Shout beats song, song beats hush, hush beats shout.",
+          "placeholders": []
+        },
+        {
+          "key": "help.phrases",
+          "label": "Phrase rule",
+          "context": "How to play",
+          "value": "Every creature has two words and one phrase. A phrase works once per fight and hits harder than a word.",
+          "placeholders": []
+        },
+        {
+          "key": "help.commands",
+          "label": "Command list",
+          "context": "How to play",
+          "value": "Commands: look, go north, go south, party, help, fight, quit, restart",
+          "placeholders": []
+        },
+        {
+          "key": "help.restart",
+          "label": "Restart rule",
+          "context": "How to play",
+          "value": "restart works at any prompt and puts you back at the title.",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "areas",
+      "label": "Areas and puzzles",
+      "entries": [
+        {
+          "key": "area.signpost.name",
+          "label": "Signpost Field name",
+          "context": "The Signpost Field",
+          "value": "The Signpost Field",
+          "placeholders": []
+        },
+        {
+          "key": "area.signpost.text",
+          "label": "Signpost Field arrival",
+          "context": "The Signpost Field",
+          "value": "A field of blank signposts. The grass is wet. One road goes north, toward the Quiet House. Type look, then go north when you are ready.",
+          "placeholders": []
+        },
+        {
+          "key": "area.signpost.look",
+          "label": "Signpost Field look",
+          "context": "The Signpost Field",
+          "value": "The signposts have no names on them. The north road is shut by a gate.",
+          "placeholders": []
+        },
+        {
+          "key": "area.mile.name",
+          "label": "Crooked Mile name",
+          "context": "The Crooked Mile",
+          "value": "The Crooked Mile",
+          "placeholders": []
+        },
+        {
+          "key": "area.mile.text",
+          "label": "Crooked Mile arrival",
+          "context": "The Crooked Mile",
+          "value": "The road bends left and then left again. Someone is waiting on the verge with a creature you almost recognise.",
+          "placeholders": []
+        },
+        {
+          "key": "area.mile.look",
+          "label": "Crooked Mile look",
+          "context": "The Crooked Mile",
+          "value": "The mile goes on. The rival's creature is watching you, not the road.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.mile.prompt",
+          "label": "Mile gate prompt",
+          "context": "The Crooked Mile > gate",
+          "value": "A sentence is nailed across the gate. Put it in order and type it: opens / the / gate / if / ask / you / nicely",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.mile.hint",
+          "label": "Mile gate hint",
+          "context": "The Crooked Mile > gate",
+          "value": "Start with the gate.",
+          "placeholders": []
+        },
+        {
+          "key": "area.archive.name",
+          "label": "Drowned Archive name",
+          "context": "The Drowned Archive",
+          "value": "The Drowned Archive",
+          "placeholders": []
+        },
+        {
+          "key": "area.archive.text",
+          "label": "Drowned Archive arrival",
+          "context": "The Drowned Archive",
+          "value": "A library under a foot of water. The shelves go down further than the room. A drain is set in the floor, and a sentence is carved around it.",
+          "placeholders": []
+        },
+        {
+          "key": "area.archive.look",
+          "label": "Drowned Archive look",
+          "context": "The Drowned Archive",
+          "value": "The water is warm. Something with a foghorn throat is asleep on the desk.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.archive.prompt",
+          "label": "Archive drain prompt",
+          "context": "The Drowned Archive > drain",
+          "value": "The drain says: Between you and ___, the archive is drowning. Type the missing word.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.archive.hint",
+          "label": "Archive drain hint",
+          "context": "The Drowned Archive > drain",
+          "value": "It is not I.",
+          "placeholders": []
+        },
+        {
+          "key": "area.market.name",
+          "label": "Market name",
+          "context": "The Market of Small Lies",
+          "value": "The Market of Small Lies",
+          "placeholders": []
+        },
+        {
+          "key": "area.market.text",
+          "label": "Market arrival",
+          "context": "The Market of Small Lies",
+          "value": "A row of stalls selling words by the letter. A small many-tongued thing is sitting on the counter of the closed stall.",
+          "placeholders": []
+        },
+        {
+          "key": "area.market.look",
+          "label": "Market look",
+          "context": "The Market of Small Lies",
+          "value": "The signs are spelled wrong on purpose. The thing on the counter is already telling someone about you.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.market.prompt",
+          "label": "Market vowel prompt",
+          "context": "The Market of Small Lies > gate",
+          "value": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy? Type the word.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.market.hint",
+          "label": "Market vowel hint",
+          "context": "The Market of Small Lies > gate",
+          "value": "It is what the quiet house is full of.",
+          "placeholders": []
+        },
+        {
+          "key": "area.quiet.name",
+          "label": "Quiet House name",
+          "context": "The Quiet House",
+          "value": "The Quiet House",
+          "placeholders": []
+        },
+        {
+          "key": "area.quiet.text",
+          "label": "Quiet House arrival",
+          "context": "The Quiet House",
+          "value": "A house with no sound coming out of it. The door is open.",
+          "placeholders": []
+        },
+        {
+          "key": "area.quiet.look",
+          "label": "Quiet House look",
+          "context": "The Quiet House",
+          "value": "The windows are dark. Someone has written on the door in chalk.",
+          "placeholders": []
+        },
+        {
+          "key": "area.hollow.name",
+          "label": "Quiet House inside name",
+          "context": "The Quiet House, inside",
+          "value": "The Quiet House, inside",
+          "placeholders": []
+        },
+        {
+          "key": "area.hollow.text",
+          "label": "Quiet House inside arrival",
+          "context": "The Quiet House, inside",
+          "value": "Every room has been emptied of sound. Carpets, books, a cold hearth, and no echo at all. Something is sitting in the last room with its mouth open.",
+          "placeholders": []
+        },
+        {
+          "key": "area.hollow.look",
+          "label": "Quiet House inside look",
+          "context": "The Quiet House, inside",
+          "value": "The thing in the last room is not breathing. It is listening.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.open",
+          "label": "Correct puzzle answer",
+          "context": "Puzzle gates",
+          "value": "The gate opens.",
+          "placeholders": []
+        },
+        {
+          "key": "puzzle.wrong",
+          "label": "Wrong puzzle answer",
+          "context": "Puzzle gates",
+          "value": "The gate does not move.",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "creatures",
+      "label": "Creatures",
+      "entries": [
+        {
+          "key": "creature.claxon.name",
+          "label": "Clarion name",
+          "context": "Creature names",
+          "value": "Clarion",
+          "placeholders": []
+        },
+        {
+          "key": "creature.mutter.name",
+          "label": "Murmur name",
+          "context": "Creature names",
+          "value": "Murmur",
+          "placeholders": []
+        },
+        {
+          "key": "creature.lilt.name",
+          "label": "Cadence name",
+          "context": "Creature names",
+          "value": "Cadence",
+          "placeholders": []
+        },
+        {
+          "key": "creature.yawp.name",
+          "label": "Yawp name",
+          "context": "Creature names",
+          "value": "Yawp",
+          "placeholders": []
+        },
+        {
+          "key": "creature.gossip.name",
+          "label": "Gossip name",
+          "context": "Creature names",
+          "value": "Gossip",
+          "placeholders": []
+        },
+        {
+          "key": "creature.silence.name",
+          "label": "The Quiet name",
+          "context": "Creature names",
+          "value": "The Quiet",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "words",
+      "label": "Words",
+      "entries": [
+        {
+          "key": "word.yell.name",
+          "label": "Outcry name",
+          "context": "Word names",
+          "value": "Outcry",
+          "placeholders": []
+        },
+        {
+          "key": "word.heckle.name",
+          "label": "Jeer name",
+          "context": "Word names",
+          "value": "Jeer",
+          "placeholders": []
+        },
+        {
+          "key": "word.shush.name",
+          "label": "Shush name",
+          "context": "Word names",
+          "value": "Shush",
+          "placeholders": []
+        },
+        {
+          "key": "word.hum.name",
+          "label": "Drone name",
+          "context": "Word names",
+          "value": "Drone",
+          "placeholders": []
+        },
+        {
+          "key": "word.croon.name",
+          "label": "Refrain name",
+          "context": "Word names",
+          "value": "Refrain",
+          "placeholders": []
+        },
+        {
+          "key": "word.plain.name",
+          "label": "Common Speech name",
+          "context": "Word names",
+          "value": "Common Speech",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "phrases",
+      "label": "Phrases",
+      "entries": [
+        {
+          "key": "phrase.claxon.name",
+          "label": "Clarion phrase",
+          "context": "Phrase names",
+          "value": "The Warning Bell",
+          "placeholders": []
+        },
+        {
+          "key": "phrase.mutter.name",
+          "label": "Murmur phrase",
+          "context": "Phrase names",
+          "value": "Dead Air",
+          "placeholders": []
+        },
+        {
+          "key": "phrase.lilt.name",
+          "label": "Cadence phrase",
+          "context": "Phrase names",
+          "value": "The Long Refrain",
+          "placeholders": []
+        },
+        {
+          "key": "phrase.yawp.name",
+          "label": "Yawp phrase",
+          "context": "Phrase names",
+          "value": "Foghorn",
+          "placeholders": []
+        },
+        {
+          "key": "phrase.gossip.name",
+          "label": "Gossip phrase",
+          "context": "Phrase names",
+          "value": "Rumour",
+          "placeholders": []
+        },
+        {
+          "key": "phrase.silence.name",
+          "label": "The Quiet phrase",
+          "context": "Phrase names",
+          "value": "The Full Stop",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "types",
+      "label": "Types",
+      "entries": [
+        {
+          "key": "type.shout",
+          "label": "Shout type",
+          "context": "Type display",
+          "value": "shout",
+          "placeholders": []
+        },
+        {
+          "key": "type.song",
+          "label": "Song type",
+          "context": "Type display",
+          "value": "song",
+          "placeholders": []
+        },
+        {
+          "key": "type.hush",
+          "label": "Hush type",
+          "context": "Type display",
+          "value": "hush",
+          "placeholders": []
+        },
+        {
+          "key": "type.plain",
+          "label": "Plain type",
+          "context": "Type display",
+          "value": "plain",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "combat",
+      "label": "Combat",
+      "entries": [
+        {
+          "key": "combat.status",
+          "label": "Turn status line",
+          "context": "Combat > every turn",
+          "value": "{name} ({type}) {hp}/{max}   vs   {foe} ({foe_type}) {foe_hp}/{foe_max}",
+          "placeholders": [
+            "name",
+            "type",
+            "hp",
+            "max",
+            "foe",
+            "foe_type",
+            "foe_hp",
+            "foe_max"
+          ]
+        },
+        {
+          "key": "combat.intent",
+          "label": "Enemy intent",
+          "context": "Combat > every turn",
+          "value": "{foe} is winding up to say {word} ({type}).",
+          "placeholders": [
+            "foe",
+            "word",
+            "type"
+          ]
+        },
+        {
+          "key": "combat.menu",
+          "label": "Combat menu",
+          "context": "Combat > menu",
+          "value": "1. speak   2. phrase ({phrase_state})   3. switch   4. run   5. quit",
+          "placeholders": [
+            "phrase_state"
+          ]
+        },
+        {
+          "key": "combat.phrase_spent_label",
+          "label": "Phrase spent label",
+          "context": "Combat > menu",
+          "value": "spent",
+          "placeholders": []
+        },
+        {
+          "key": "combat.phrase_ready",
+          "label": "Phrase ready",
+          "context": "Combat > menu",
+          "value": "ready",
+          "placeholders": []
+        },
+        {
+          "key": "combat.first_hint",
+          "label": "First fight explainer",
+          "context": "Combat > first fight",
+          "value": "speak uses a word, phrase is one big strike per fight, switch swaps creature, run leaves.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.which_word",
+          "label": "Word prompt",
+          "context": "Combat > speak",
+          "value": "Which word?",
+          "placeholders": []
+        },
+        {
+          "key": "combat.not_a_word",
+          "label": "Invalid word",
+          "context": "Combat > speak",
+          "value": "That is not a word. Pick a number from the list.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.invalid",
+          "label": "Invalid combat choice",
+          "context": "Combat > menu",
+          "value": "1, 2, 3, 4 or 5.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.strong",
+          "label": "Strong hit",
+          "context": "Combat > damage",
+          "value": "The word hits deep - {move_type} beats {target_type}.",
+          "placeholders": [
+            "move_type",
+            "target_type"
+          ]
+        },
+        {
+          "key": "combat.weak",
+          "label": "Weak hit",
+          "context": "Combat > damage",
+          "value": "The word glances off - {target_type} beats {move_type}.",
+          "placeholders": [
+            "move_type",
+            "target_type"
+          ]
+        },
+        {
+          "key": "combat.hit",
+          "label": "Damage line",
+          "context": "Combat > damage",
+          "value": "{attacker} uses {move} for {damage}.",
+          "placeholders": [
+            "attacker",
+            "move",
+            "damage"
+          ]
+        },
+        {
+          "key": "combat.faint",
+          "label": "Creature faints",
+          "context": "Combat > damage",
+          "value": "{name} goes quiet.",
+          "placeholders": [
+            "name"
+          ]
+        },
+        {
+          "key": "combat.phrase_spent",
+          "label": "Phrase already used",
+          "context": "Combat > phrase",
+          "value": "The phrase is spent.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.phrase_speak",
+          "label": "Phrase announcement",
+          "context": "Combat > phrase",
+          "value": "{name} speaks its phrase.",
+          "placeholders": [
+            "name"
+          ]
+        },
+        {
+          "key": "combat.recruit",
+          "label": "Recruit message",
+          "context": "Combat > win",
+          "value": "{name} joins you.",
+          "placeholders": [
+            "name"
+          ]
+        },
+        {
+          "key": "combat.send_out",
+          "label": "Switch prompt",
+          "context": "Combat > switch",
+          "value": "Send out who?",
+          "placeholders": []
+        },
+        {
+          "key": "combat.pick_number",
+          "label": "Invalid switch",
+          "context": "Combat > switch",
+          "value": "Pick a number from the list.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.no_words",
+          "label": "Party wiped",
+          "context": "Combat > loss",
+          "value": "Your throat is empty.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.run_away",
+          "label": "Run away",
+          "context": "Combat > run",
+          "value": "You get out of the grass.",
+          "placeholders": []
+        },
+        {
+          "key": "combat.boss_rule",
+          "label": "Boss shrugs off a clever word",
+          "context": "The Quiet > any turn",
+          "value": "{foe} swallows the word whole. It only flinches at {word}.",
+          "placeholders": [
+            "foe",
+            "word"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "house",
+      "label": "The Quiet House",
+      "entries": [
+        {
+          "key": "house.chalk",
+          "label": "Chalk line",
+          "context": "The Quiet House > first visit",
+          "value": "The chalk on the door comes away on your hand. The word is {word}.",
+          "placeholders": [
+            "word"
+          ]
+        },
+        {
+          "key": "house.chalk_pass",
+          "label": "Chalk passed round",
+          "context": "The Quiet House > first visit",
+          "value": "You pass it down the line, one clean word each.",
+          "placeholders": []
+        },
+        {
+          "key": "house.rest",
+          "label": "Rest line",
+          "context": "The Quiet House > damaged party",
+          "value": "The house is quiet enough to hear yourself think. Your words come back.",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "label": "Ending",
+      "entries": [
+        {
+          "key": "ending.part1",
+          "label": "Boss falls",
+          "context": "Ending",
+          "value": "{foe} opens its mouth one last time, and nothing comes out.",
+          "placeholders": [
+            "foe"
+          ]
+        },
+        {
+          "key": "ending.part2",
+          "label": "House settles",
+          "context": "Ending",
+          "value": "The house takes a breath. The floorboards creak. Upstairs, a door clicks shut.",
+          "placeholders": []
+        },
+        {
+          "key": "ending.walk",
+          "label": "Walking out",
+          "context": "Ending",
+          "value": "{name} walks back out through the market with a word on their tongue.",
+          "placeholders": [
+            "name"
+          ]
+        },
+        {
+          "key": "ending.world1",
+          "label": "The market and the signs",
+          "context": "Ending",
+          "value": "The stalls still sell letters by the weight. The signposts still point the wrong way.",
+          "placeholders": []
+        },
+        {
+          "key": "ending.world2",
+          "label": "The road",
+          "context": "Ending",
+          "value": "The road still bends left and then left again. But the words are out, and the house is only a house.",
+          "placeholders": []
+        },
+        {
+          "key": "ending.thesis",
+          "label": "Last line before the title",
+          "context": "Ending",
+          "value": "A story stays quiet only while nobody tells it.",
+          "placeholders": []
+        },
+        {
+          "key": "ending.the_end",
+          "label": "Closing title",
+          "context": "Ending",
+          "value": "THE END",
+          "placeholders": []
+        }
+      ]
+    },
+    {
+      "id": "party",
+      "label": "Party",
+      "entries": [
+        {
+          "key": "party.title",
+          "label": "Party heading",
+          "context": "Party screen",
+          "value": "{name}'s words:",
+          "placeholders": [
+            "name"
+          ]
+        },
+        {
+          "key": "party.line",
+          "label": "Party creature line",
+          "context": "Party screen",
+          "value": "  {name} ({type}) {hp}/{max}",
+          "placeholders": [
+            "name",
+            "type",
+            "hp",
+            "max"
+          ]
+        },
+        {
+          "key": "party.phrase",
+          "label": "Party phrase line",
+          "context": "Party screen",
+          "value": "    phrase: {phrase}",
+          "placeholders": [
+            "phrase"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "save",
+      "label": "Save and load",
+      "entries": [
+        {
+          "key": "save.none",
+          "label": "No save found",
+          "context": "Continue",
+          "value": "There is no page to turn back to.",
+          "placeholders": []
+        },
+        {
+          "key": "save.continue",
+          "label": "Continue message",
+          "context": "Continue",
+          "value": "{name} picks up where they left off.",
+          "placeholders": [
+            "name"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "label": "System",
+      "entries": [
+        {
+          "key": "system.prompt",
+          "label": "Input prompt",
+          "context": "Everywhere",
+          "value": "> ",
+          "placeholders": []
+        },
+        {
+          "key": "system.commands",
+          "label": "Room command line",
+          "context": "Every area",
+          "value": "Commands: look, {exits}, party, help, fight, quit",
+          "placeholders": [
+            "exits"
+          ]
+        },
+        {
+          "key": "system.unknown",
+          "label": "Unknown command",
+          "context": "Every area",
+          "value": "Nothing answers.",
+          "placeholders": []
+        },
+        {
+          "key": "system.quit",
+          "label": "Quit message",
+          "context": "Quit and Ctrl-C",
+          "value": "The dice go back in the cup.",
+          "placeholders": []
+        },
+        {
+          "key": "system.restart",
+          "label": "Restart message",
+          "context": "Any prompt",
+          "value": "The page turns back to the beginning.",
+          "placeholders": []
+        }
+      ]
+    }
+  ]
+}

@@ -200,8 +200,20 @@ AREAS = {
         "name": "The Market of Small Lies",
         "text": "A row of stalls selling words by the letter. A small many-tongued thing is sitting on the counter of the closed stall.",
         "look": "The signs are spelled wrong on purpose. The thing on the counter is already telling someone about you.",
-        "exits": {"south": "archive"},
+        "exits": {"south": "archive", "north": "quiet"},
         "foe": "gossip",
+        "puzzle": {
+            "gate": "north",
+            "prompt": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy?",
+            "answers": ["silence"],
+            "hint": "It is what the quiet house is full of.",
+        },
+    },
+    "quiet": {
+        "name": "The Quiet House",
+        "text": "A house with no sound coming out of it. The door is open.",
+        "look": "The windows are dark. Someone has written on the door in chalk.",
+        "exits": {"south": "market"},
     },
 }
 
@@ -218,6 +230,7 @@ def save_game(player, spot):
         "name": player["name"],
         "party": player["party"],
         "solved": player["solved"],
+        "tries": player["tries"],
         "rival": player["rival"],
         "spot": spot,
     }
@@ -264,6 +277,8 @@ def explore(player, spot):
             if command == gate and here["name"] not in player["solved"]:
                 print(here["puzzle"]["prompt"])
                 answer = input("> ")
+                tries = player["tries"].get(here["name"], 0) + 1
+                player["tries"][here["name"]] = tries
                 if normalise(answer) in [normalise(one) for one in here["puzzle"]["answers"]]:
                     print("The gate opens.")
                     player["solved"].append(here["name"])
@@ -271,6 +286,8 @@ def explore(player, spot):
                     save_game(player, spot)
                 else:
                     print("The gate does not move.")
+                    if tries >= 3:
+                        print(here["puzzle"]["hint"])
             else:
                 spot = here["exits"][command]
                 save_game(player, spot)
@@ -314,7 +331,7 @@ def main():
                 second = "lilt" if first != "lilt" else "claxon"
             party = [make_creature(first), make_creature(second)]
             rival = [key for key in picks.values() if key not in (first, second)][0]
-            player = {"name": name, "party": party, "solved": [], "rival": rival}
+            player = {"name": name, "party": party, "solved": [], "tries": {}, "rival": rival}
             print(f"{name} takes the {party[0]['name']} and the {party[1]['name']}.")
             save_game(player, "signpost")
             explore(player, "signpost")
@@ -327,6 +344,7 @@ def main():
                 "name": data["name"],
                 "party": data["party"],
                 "solved": data["solved"],
+                "tries": data.get("tries", {}),
                 "rival": data["rival"],
             }
             for monster in player["party"]:

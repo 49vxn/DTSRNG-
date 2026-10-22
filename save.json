@@ -1,0 +1,1 @@
+{"name": "Kev", "party": [{"key": "claxon", "name": "Claxon", "type": "shout", "hp": 34, "max": 34, "atk": 9, "words": ["yell", "heckle"], "phrase_used": false}, {"key": "mutter", "name": "Mutter", "type": "hush", "hp": 30, "max": 30, "atk": 8, "words": ["shush", "hum"], "phrase_used": false}], "solved": [], "rival": "lilt", "spot": "signpost"}

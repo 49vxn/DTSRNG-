@@ -1,9 +1,11 @@
 # rng - roll of the dice
 # a text game about throwing words at things. run it with python main.py
 
+import json
 import random
 
 MAX_PARTY = 5
+SAVE_PATH = "save.json"
 
 CREATURES = {
     "claxon": {"name": "Claxon", "type": "shout", "hp": 34, "atk": 9, "words": ["yell", "heckle"]},
@@ -208,6 +210,18 @@ def show_party(player):
         print(f"    phrase: {PHRASES[monster['key']]['name']}")
 
 
+def save_game(player, spot):
+    data = {
+        "name": player["name"],
+        "party": player["party"],
+        "solved": player["solved"],
+        "rival": player["rival"],
+        "spot": spot,
+    }
+    with open(SAVE_PATH, "w") as handle:
+        json.dump(data, handle)
+
+
 def normalise(text):
     text = text.lower().strip()
     for mark in ".,!?;:'\"-":
@@ -216,6 +230,7 @@ def normalise(text):
 
 
 def explore(player, spot):
+    save_game(player, spot)
     while True:
         here = AREAS[spot]
         print()
@@ -242,10 +257,12 @@ def explore(player, spot):
                     print("The gate opens.")
                     player["solved"].append(here["name"])
                     spot = here["exits"][command]
+                    save_game(player, spot)
                 else:
                     print("The gate does not move.")
             else:
                 spot = here["exits"][command]
+                save_game(player, spot)
         elif command == "fight":
             foe = player["rival"] if here.get("rival") else here["foe"]
             fight(player, make_creature(foe), here.get("recruit", False))
@@ -287,6 +304,7 @@ def main():
             rival = [key for key in picks.values() if key not in (first, second)][0]
             player = {"name": name, "party": party, "solved": [], "rival": rival}
             print(f"{name} takes the {party[0]['name']} and the {party[1]['name']}.")
+            save_game(player, "signpost")
             explore(player, "signpost")
         elif choice == "2":
             instructions()

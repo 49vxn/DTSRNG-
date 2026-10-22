@@ -166,10 +166,11 @@ AREAS = {
     },
     "mile": {
         "name": "The Crooked Mile",
-        "text": "The road bends left and then left again. A brass-coloured thing is sitting on the verge.",
-        "look": "The mile goes on. The grass is flattened where something has been sitting.",
+        "text": "The road bends left and then left again. Someone is waiting on the verge with a creature you almost recognise.",
+        "look": "The mile goes on. The rival's creature is watching you, not the road.",
         "exits": {"south": "signpost", "north": "archive"},
         "foe": "claxon",
+        "rival": True,
         "puzzle": {
             "gate": "north",
             "prompt": "A sentence is nailed across the gate. Put it in order: opens / the / gate / if / ask / you / nicely",
@@ -237,7 +238,8 @@ def explore(player, spot):
             else:
                 spot = here["exits"][command]
         elif command == "fight":
-            fight(player, make_creature(here["foe"]), here.get("recruit", False))
+            foe = player["rival"] if here.get("rival") else here["foe"]
+            fight(player, make_creature(foe), here.get("recruit", False))
         elif command == "quit":
             return
         else:
@@ -264,17 +266,18 @@ def main():
 
         if choice == "1":
             name = input("Name: ")
-            print("Pick a creature.")
+            print("Three words are waiting on the table. Pick two.")
             print("1. Claxon   2. Mutter   3. Lilt")
-            pick = input("> ")
-            if pick == "2":
-                starter = "mutter"
-            elif pick == "3":
-                starter = "lilt"
-            else:
-                starter = "claxon"
-            player = {"name": name, "party": [make_creature(starter)], "solved": []}
-            print(f"{name} takes the {player['party'][0]['name']}.")
+            picks = {"1": "claxon", "2": "mutter", "3": "lilt"}
+            first = picks.get(input("> "), "claxon")
+            print("And one more.")
+            second = picks.get(input("> "), "mutter")
+            if second == first:
+                second = "lilt" if first != "lilt" else "claxon"
+            party = [make_creature(first), make_creature(second)]
+            rival = [key for key in picks.values() if key not in (first, second)][0]
+            player = {"name": name, "party": party, "solved": [], "rival": rival}
+            print(f"{name} takes the {party[0]['name']} and the {party[1]['name']}.")
             explore(player, "signpost")
         elif choice == "2":
             instructions()

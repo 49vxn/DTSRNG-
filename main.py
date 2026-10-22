@@ -222,6 +222,14 @@ def save_game(player, spot):
         json.dump(data, handle)
 
 
+def load_game():
+    try:
+        with open(SAVE_PATH) as handle:
+            return json.load(handle)
+    except FileNotFoundError:
+        return None
+
+
 def normalise(text):
     text = text.lower().strip()
     for mark in ".,!?;:'\"-":
@@ -286,8 +294,9 @@ def main():
         print("roll of the dice")
         print()
         print("1. new game")
-        print("2. how to play")
-        print("3. quit")
+        print("2. continue")
+        print("3. how to play")
+        print("4. quit")
         choice = input("> ")
 
         if choice == "1":
@@ -307,12 +316,28 @@ def main():
             save_game(player, "signpost")
             explore(player, "signpost")
         elif choice == "2":
-            instructions()
+            data = load_game()
+            if data is None:
+                print("There is no page to turn back to.")
+                continue
+            player = {
+                "name": data["name"],
+                "party": data["party"],
+                "solved": data["solved"],
+                "rival": data["rival"],
+            }
+            for monster in player["party"]:
+                monster["hp"] = monster["max"]
+                monster["phrase_used"] = False
+            print(f"{player['name']} picks up where they left off.")
+            explore(player, data["spot"])
         elif choice == "3":
+            instructions()
+        elif choice == "4":
             print("The dice go back in the cup.")
             return
         else:
-            print("Pick 1, 2 or 3.")
+            print("Pick 1, 2, 3 or 4.")
 
 
 if __name__ == "__main__":

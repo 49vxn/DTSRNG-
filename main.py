@@ -202,6 +202,7 @@ AREAS = {
         "look": "The signs are spelled wrong on purpose. The thing on the counter is already telling someone about you.",
         "exits": {"south": "archive", "north": "quiet"},
         "foe": "gossip",
+        "recruit": True,
         "puzzle": {
             "gate": "north",
             "prompt": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy?",

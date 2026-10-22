@@ -12,6 +12,7 @@ CREATURES = {
     "mutter": {"name": "Mutter", "type": "hush", "hp": 30, "atk": 8, "words": ["shush", "hum"]},
     "lilt": {"name": "Lilt", "type": "song", "hp": 32, "atk": 8, "words": ["croon", "hum"]},
     "yawp": {"name": "Yawp", "type": "shout", "hp": 36, "atk": 10, "words": ["yell", "plain"]},
+    "gossip": {"name": "Gossip", "type": "song", "hp": 34, "atk": 9, "words": ["croon", "heckle"]},
 }
 
 WORDS = {
@@ -35,6 +36,7 @@ PHRASES = {
     "mutter": {"name": "Dead Air", "power": 14, "type": "hush"},
     "lilt": {"name": "Lullaby", "power": 12, "type": "song"},
     "yawp": {"name": "Foghorn", "power": 20, "type": "shout"},
+    "gossip": {"name": "Rumour", "power": 13, "type": "song"},
 }
 
 
@@ -196,9 +198,10 @@ AREAS = {
     },
     "market": {
         "name": "The Market of Small Lies",
-        "text": "A row of stalls selling words by the letter. Most of them are closed.",
-        "look": "The signs are spelled wrong on purpose.",
+        "text": "A row of stalls selling words by the letter. A small many-tongued thing is sitting on the counter of the closed stall.",
+        "look": "The signs are spelled wrong on purpose. The thing on the counter is already telling someone about you.",
         "exits": {"south": "archive"},
+        "foe": "gossip",
     },
 }
 

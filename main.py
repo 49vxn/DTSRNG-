@@ -75,8 +75,8 @@ def ask(prompt=None):
     # every prompt goes through here, so restart works even mid fight
     if prompt is None:
         prompt = t("system.prompt")
-    answer = input(prompt)
-    if answer.strip().lower() == "restart":
+    answer = input(prompt).strip()
+    if answer.lower() == "restart":
         raise RestartGame
     return answer
 
@@ -344,7 +344,7 @@ def load_game():
     try:
         with open(SAVE_PATH) as handle:
             return json.load(handle)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.JSONDecodeError):
         return None
 
 
@@ -433,7 +433,11 @@ def title():
         choice = ask()
 
         if choice == "1":
-            name = input(t("start.name_prompt"))
+            name = ""
+            while not name:
+                name = input(t("start.name_prompt")).strip()
+                if not name:
+                    print(t("start.name_needed"))
             print(t("start.pick_two"))
             starters = {}
             for key in ("claxon", "mutter", "lilt"):
@@ -441,9 +445,19 @@ def title():
                 starters[key + "_type"] = t("type." + CREATURES[key]["type"])
             print(t("start.starters", **starters))
             picks = {"1": "claxon", "2": "mutter", "3": "lilt"}
-            first = picks.get(ask(), "claxon")
+            first = None
+            while first is None:
+                choice = ask()
+                first = picks.get(choice)
+                if first is None:
+                    print(t("start.pick_invalid"))
             print(t("start.and_one"))
-            second = picks.get(ask(), "mutter")
+            second = None
+            while second is None:
+                choice = ask()
+                second = picks.get(choice)
+                if second is None:
+                    print(t("start.pick_invalid"))
             if second == first:
                 second = "lilt" if first != "lilt" else "claxon"
             party = [make_creature(first), make_creature(second)]

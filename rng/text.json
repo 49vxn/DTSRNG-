@@ -112,6 +112,20 @@
             "first",
             "second"
           ]
+        },
+        {
+          "key": "start.name_needed",
+          "label": "Empty name",
+          "context": "New game",
+          "value": "A name, please.",
+          "placeholders": []
+        },
+        {
+          "key": "start.pick_invalid",
+          "label": "Invalid starter choice",
+          "context": "New game",
+          "value": "Pick 1, 2 or 3.",
+          "placeholders": []
         }
       ]
     },

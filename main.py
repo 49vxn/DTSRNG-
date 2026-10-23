@@ -369,7 +369,9 @@ def explore(player, spot):
             if rest_party(player):
                 print(t("house.rest"))
         print(here["text"])
+        print()
         print(t("system.commands", exits=", ".join(here["exits"])))
+        print()
 
         command = ask().lower()
         if command.startswith("go "):

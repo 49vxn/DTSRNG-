@@ -123,21 +123,21 @@
           "key": "help.intro",
           "label": "Opening help line",
           "context": "How to play",
-          "value": "You are a roller. Your creatures fight with words, in turns, and you choose one word a turn.",
+          "value": "You walk the valley road. Your creatures trade syllables in alternating turns.",
           "placeholders": []
         },
         {
           "key": "help.types",
           "label": "Type triangle",
           "context": "How to play",
-          "value": "Shout beats song, song beats hush, hush beats shout.",
+          "value": "Shout shatters song, song soothes hush, hush smothers shout.",
           "placeholders": []
         },
         {
           "key": "help.phrases",
           "label": "Phrase rule",
           "context": "How to play",
-          "value": "Every creature has two words and one phrase. A phrase works once per fight and hits harder than a word.",
+          "value": "Each creature carries two words and one phrase. A phrase hits once per fight with heavier force.",
           "placeholders": []
         },
         {
@@ -151,7 +151,7 @@
           "key": "help.restart",
           "label": "Restart rule",
           "context": "How to play",
-          "value": "restart works at any prompt and puts you back at the title.",
+          "value": "restart works at any prompt and returns you to the road head.",
           "placeholders": []
         }
       ]
@@ -171,14 +171,14 @@
           "key": "area.signpost.text",
           "label": "Signpost Field arrival",
           "context": "The Signpost Field",
-          "value": "A field of blank signposts. The grass is wet. One road goes north, toward the Quiet House. Type look, then go north when you are ready.",
+          "value": "Gravel and wet ryegrass under stripped pine. Every board has been planed clean of ink. The track climbs north toward the ridge. Type look, then go north.",
           "placeholders": []
         },
         {
           "key": "area.signpost.look",
           "label": "Signpost Field look",
           "context": "The Signpost Field",
-          "value": "The signposts have no names on them. The north road is shut by a gate.",
+          "value": "Bleached timber posts with the grain standing proud. A sheep hurdle blocks the north road.",
           "placeholders": []
         },
         {
@@ -192,28 +192,28 @@
           "key": "area.mile.text",
           "label": "Crooked Mile arrival",
           "context": "The Crooked Mile",
-          "value": "The road bends left and then left again. Someone is waiting on the verge with a creature you almost recognise.",
+          "value": "The clay road turns three times to make a mile. Someone leans against a culvert with a creature on a rope.",
           "placeholders": []
         },
         {
           "key": "area.mile.look",
           "label": "Crooked Mile look",
           "context": "The Crooked Mile",
-          "value": "The mile goes on. The rival's creature is watching you, not the road.",
+          "value": "Wagon ruts baked hard into mud. Your rival's creature watches your boots, not the road.",
           "placeholders": []
         },
         {
           "key": "puzzle.mile.prompt",
           "label": "Mile gate prompt",
           "context": "The Crooked Mile > gate",
-          "value": "A sentence is nailed across the gate. Put it in order and type it: opens / the / gate / if / ask / you / nicely",
+          "value": "Boards nailed across the hurdle. Put the speech in order: opens / the / gate / if / ask / you / nicely",
           "placeholders": []
         },
         {
           "key": "puzzle.mile.hint",
           "label": "Mile gate hint",
           "context": "The Crooked Mile > gate",
-          "value": "Start with the gate.",
+          "value": "Lead with the subject.",
           "placeholders": []
         },
         {
@@ -227,28 +227,28 @@
           "key": "area.archive.text",
           "label": "Drowned Archive arrival",
           "context": "The Drowned Archive",
-          "value": "A library under a foot of water. The shelves go down further than the room. A drain is set in the floor, and a sentence is carved around it.",
+          "value": "Cold floodwater over flagstones. White pine shelves dip straight into the cellar pool. A brass grate sits in the floor under carved Latin.",
           "placeholders": []
         },
         {
           "key": "area.archive.look",
           "label": "Drowned Archive look",
           "context": "The Drowned Archive",
-          "value": "The water is warm. Something with a foghorn throat is asleep on the desk.",
+          "value": "Sodden paper smells of silt and river moss. A thick-necked beast sleeps across the card cabinet.",
           "placeholders": []
         },
         {
           "key": "puzzle.archive.prompt",
           "label": "Archive drain prompt",
           "context": "The Drowned Archive > drain",
-          "value": "The drain says: Between you and ___, the archive is drowning. Type the missing word.",
+          "value": "The drain rim reads: Between you and ___, the archive is drowning. Name the object.",
           "placeholders": []
         },
         {
           "key": "puzzle.archive.hint",
           "label": "Archive drain hint",
           "context": "The Drowned Archive > drain",
-          "value": "It is not I.",
+          "value": "Not the speaker as subject.",
           "placeholders": []
         },
         {
@@ -262,28 +262,28 @@
           "key": "area.market.text",
           "label": "Market arrival",
           "context": "The Market of Small Lies",
-          "value": "A row of stalls selling words by the letter. A small many-tongued thing is sitting on the counter of the closed stall.",
+          "value": "Canvas stalls where syllables are traded on brass scales. A creature with three split tongues sits atop a padlocked crate.",
           "placeholders": []
         },
         {
           "key": "area.market.look",
           "label": "Market look",
           "context": "The Market of Small Lies",
-          "value": "The signs are spelled wrong on purpose. The thing on the counter is already telling someone about you.",
+          "value": "Hand-inked placards missing every vowel on purpose. The creature on the crate is already shaping your name.",
           "placeholders": []
         },
         {
           "key": "puzzle.market.prompt",
           "label": "Market vowel prompt",
           "context": "The Market of Small Lies > gate",
-          "value": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy? Type the word.",
+          "value": "The vendor slips you a card without vowels: S _ L _ N C E. Name what was bought.",
           "placeholders": []
         },
         {
           "key": "puzzle.market.hint",
           "label": "Market vowel hint",
           "context": "The Market of Small Lies > gate",
-          "value": "It is what the quiet house is full of.",
+          "value": "What settles in the valley after dark.",
           "placeholders": []
         },
         {
@@ -297,14 +297,14 @@
           "key": "area.quiet.text",
           "label": "Quiet House arrival",
           "context": "The Quiet House",
-          "value": "A house with no sound coming out of it. The door is open.",
+          "value": "A stone gable where the valley wind stops dead. The timber door stands four inches open.",
           "placeholders": []
         },
         {
           "key": "area.quiet.look",
           "label": "Quiet House look",
           "context": "The Quiet House",
-          "value": "The windows are dark. Someone has written on the door in chalk.",
+          "value": "Dark slate sills and iron hinges. A single word is written across the jamb in grease chalk.",
           "placeholders": []
         },
         {
@@ -318,28 +318,28 @@
           "key": "area.hollow.text",
           "label": "Quiet House inside arrival",
           "context": "The Quiet House, inside",
-          "value": "Every room has been emptied of sound. Carpets, books, a cold hearth, and no echo at all. Something is sitting in the last room with its mouth open.",
+          "value": "Scrubbed kauri boards, dry lime mortar, and no echo. In the scullery, something sits on an iron kettle with its jaws unhinged.",
           "placeholders": []
         },
         {
           "key": "area.hollow.look",
           "label": "Quiet House inside look",
           "context": "The Quiet House, inside",
-          "value": "The thing in the last room is not breathing. It is listening.",
+          "value": "It draws no breath through its teeth. It sits waiting for a syllable to catch.",
           "placeholders": []
         },
         {
           "key": "puzzle.open",
           "label": "Correct puzzle answer",
           "context": "Puzzle gates",
-          "value": "The gate opens.",
+          "value": "The way opens.",
           "placeholders": []
         },
         {
           "key": "puzzle.wrong",
           "label": "Wrong puzzle answer",
           "context": "Puzzle gates",
-          "value": "The gate does not move.",
+          "value": "Nothing gives.",
           "placeholders": []
         }
       ]
@@ -546,7 +546,7 @@
           "key": "combat.intent",
           "label": "Enemy intent",
           "context": "Combat > every turn",
-          "value": "{foe} is winding up to say {word} ({type}).",
+          "value": "{foe} shapes its teeth to speak {word} ({type}).",
           "placeholders": [
             "foe",
             "word",
@@ -580,7 +580,7 @@
           "key": "combat.first_hint",
           "label": "First fight explainer",
           "context": "Combat > first fight",
-          "value": "speak uses a word, phrase is one big strike per fight, switch swaps creature, run leaves.",
+          "value": "speak looses a word; phrase strikes once with full weight; switch swaps place; run yields.",
           "placeholders": []
         },
         {
@@ -608,7 +608,7 @@
           "key": "combat.strong",
           "label": "Strong hit",
           "context": "Combat > damage",
-          "value": "The word hits deep - {move_type} beats {target_type}.",
+          "value": "The sound strikes clean: {move_type} shatters {target_type}.",
           "placeholders": [
             "move_type",
             "target_type"
@@ -618,7 +618,7 @@
           "key": "combat.weak",
           "label": "Weak hit",
           "context": "Combat > damage",
-          "value": "The word glances off - {target_type} beats {move_type}.",
+          "value": "The sound glances off: {target_type} absorbs {move_type}.",
           "placeholders": [
             "move_type",
             "target_type"
@@ -628,7 +628,7 @@
           "key": "combat.hit",
           "label": "Damage line",
           "context": "Combat > damage",
-          "value": "{attacker} uses {move} for {damage}.",
+          "value": "{attacker} says {move} for {damage}.",
           "placeholders": [
             "attacker",
             "move",
@@ -639,7 +639,7 @@
           "key": "combat.faint",
           "label": "Creature faints",
           "context": "Combat > damage",
-          "value": "{name} goes quiet.",
+          "value": "{name} goes quiet and still.",
           "placeholders": [
             "name"
           ]
@@ -655,7 +655,7 @@
           "key": "combat.phrase_speak",
           "label": "Phrase announcement",
           "context": "Combat > phrase",
-          "value": "{name} speaks its phrase.",
+          "value": "{name} spends its phrase.",
           "placeholders": [
             "name"
           ]
@@ -687,21 +687,21 @@
           "key": "combat.no_words",
           "label": "Party wiped",
           "context": "Combat > loss",
-          "value": "Your throat is empty.",
+          "value": "Your throat is empty. No sounds answer.",
           "placeholders": []
         },
         {
           "key": "combat.run_away",
           "label": "Run away",
           "context": "Combat > run",
-          "value": "You get out of the grass.",
+          "value": "You drop back into the gorse.",
           "placeholders": []
         },
         {
           "key": "combat.boss_rule",
           "label": "Boss shrugs off a clever word",
           "context": "The Quiet > any turn",
-          "value": "{foe} swallows the word whole. It only flinches at {word}.",
+          "value": "{foe} swallows the blow whole. Only {word} cuts the hide.",
           "placeholders": [
             "foe",
             "word"
@@ -717,7 +717,7 @@
           "key": "house.chalk",
           "label": "Chalk line",
           "context": "The Quiet House > first visit",
-          "value": "The chalk on the door comes away on your hand. The word is {word}.",
+          "value": "The chalk powder comes off pale on your thumb. The word is {word}.",
           "placeholders": [
             "word"
           ]
@@ -726,14 +726,14 @@
           "key": "house.chalk_pass",
           "label": "Chalk passed round",
           "context": "The Quiet House > first visit",
-          "value": "You pass it down the line, one clean word each.",
+          "value": "You pass the sound down your line, spoken clean and once.",
           "placeholders": []
         },
         {
           "key": "house.rest",
           "label": "Rest line",
           "context": "The Quiet House > damaged party",
-          "value": "The house is quiet enough to hear yourself think. Your words come back.",
+          "value": "The silence in the chimney is dense enough to hold a voice. Your words return.",
           "placeholders": []
         }
       ]
@@ -746,7 +746,7 @@
           "key": "ending.part1",
           "label": "Boss falls",
           "context": "Ending",
-          "value": "{foe} opens its mouth one last time, and nothing comes out.",
+          "value": "{foe} shuts its jaw with the crack of dry heartwood. Nothing answers.",
           "placeholders": [
             "foe"
           ]
@@ -755,14 +755,14 @@
           "key": "ending.part2",
           "label": "House settles",
           "context": "Ending",
-          "value": "The house takes a breath. The floorboards creak. Upstairs, a door clicks shut.",
+          "value": "The flue exhales. Floorboards settle. Upstairs, a sash weight knocks once and goes still.",
           "placeholders": []
         },
         {
           "key": "ending.walk",
           "label": "Walking out",
           "context": "Ending",
-          "value": "{name} walks back out through the market with a word on their tongue.",
+          "value": "{name} walks back into the scrub with an unspent word under the tongue.",
           "placeholders": [
             "name"
           ]
@@ -771,21 +771,21 @@
           "key": "ending.world1",
           "label": "The market and the signs",
           "context": "Ending",
-          "value": "The stalls still sell letters by the weight. The signposts still point the wrong way.",
+          "value": "The stalls still peddle consonants by the pound. The posts still stand blank above the gravel.",
           "placeholders": []
         },
         {
           "key": "ending.world2",
           "label": "The road",
           "context": "Ending",
-          "value": "The road still bends left and then left again. But the words are out, and the house is only a house.",
+          "value": "The clay road still doubles back on itself. But the house is only cold timber and slate.",
           "placeholders": []
         },
         {
           "key": "ending.thesis",
           "label": "Last line before the title",
           "context": "Ending",
-          "value": "A story stays quiet only while nobody tells it.",
+          "value": "A valley stays hollow only while no one will pronounce it.",
           "placeholders": []
         },
         {
@@ -870,7 +870,7 @@
           "key": "system.commands",
           "label": "Room command line",
           "context": "Every area",
-          "value": "Commands: look, {exits}, party, help, fight, quit",
+          "value": "Commands you can use: look, {exits}, party, help, fight, quit",
           "placeholders": [
             "exits"
           ]

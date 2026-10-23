@@ -71,39 +71,42 @@
           "key": "start.name_prompt",
           "label": "Name prompt",
           "context": "New game",
-          "value": "Name: ",
+          "value": "Your name: ",
           "placeholders": []
         },
         {
           "key": "start.pick_two",
           "label": "Starter choice",
           "context": "New game",
-          "value": "Three words are waiting on the table. Pick two.",
+          "value": "Three creatures are waiting on the table. Each one fights with the words it knows. Pick two.",
           "placeholders": []
         },
         {
           "key": "start.starters",
           "label": "Starter list",
           "context": "New game",
-          "value": "1. {claxon}   2. {mutter}   3. {lilt}",
+          "value": "1. {claxon} ({claxon_type})   2. {mutter} ({mutter_type})   3. {lilt} ({lilt_type})",
           "placeholders": [
             "claxon",
+            "claxon_type",
             "mutter",
-            "lilt"
+            "mutter_type",
+            "lilt",
+            "lilt_type"
           ]
         },
         {
           "key": "start.and_one",
           "label": "Second starter prompt",
           "context": "New game",
-          "value": "And one more.",
+          "value": "And one more to stand beside it.",
           "placeholders": []
         },
         {
           "key": "start.chosen",
           "label": "Starter confirmation",
           "context": "New game",
-          "value": "{name} takes the {first} and the {second}.",
+          "value": "{name} takes the {first} and the {second}. Type help at any prompt for the rules.",
           "placeholders": [
             "name",
             "first",
@@ -120,7 +123,7 @@
           "key": "help.intro",
           "label": "Opening help line",
           "context": "How to play",
-          "value": "You are a roller. Words fight for you, in turns.",
+          "value": "You are a roller. Your creatures fight with words, in turns, and you choose one word a turn.",
           "placeholders": []
         },
         {
@@ -134,7 +137,7 @@
           "key": "help.phrases",
           "label": "Phrase rule",
           "context": "How to play",
-          "value": "Every creature has two words and one phrase. A phrase works once per fight.",
+          "value": "Every creature has two words and one phrase. A phrase works once per fight and hits harder than a word.",
           "placeholders": []
         },
         {
@@ -168,7 +171,7 @@
           "key": "area.signpost.text",
           "label": "Signpost Field arrival",
           "context": "The Signpost Field",
-          "value": "A field of blank signposts. The grass is wet. One road goes north.",
+          "value": "A field of blank signposts. The grass is wet. One road goes north, toward the Quiet House. Type look, then go north when you are ready.",
           "placeholders": []
         },
         {
@@ -203,7 +206,7 @@
           "key": "puzzle.mile.prompt",
           "label": "Mile gate prompt",
           "context": "The Crooked Mile > gate",
-          "value": "A sentence is nailed across the gate. Put it in order: opens / the / gate / if / ask / you / nicely",
+          "value": "A sentence is nailed across the gate. Put it in order and type it: opens / the / gate / if / ask / you / nicely",
           "placeholders": []
         },
         {
@@ -238,7 +241,7 @@
           "key": "puzzle.archive.prompt",
           "label": "Archive drain prompt",
           "context": "The Drowned Archive > drain",
-          "value": "The drain says: Between you and ___, the archive is drowning.",
+          "value": "The drain says: Between you and ___, the archive is drowning. Type the missing word.",
           "placeholders": []
         },
         {
@@ -273,7 +276,7 @@
           "key": "puzzle.market.prompt",
           "label": "Market vowel prompt",
           "context": "The Market of Small Lies > gate",
-          "value": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy?",
+          "value": "A vendor sells you a word with the vowels missing: S _ L _ N C E. What did you buy? Type the word.",
           "placeholders": []
         },
         {
@@ -527,12 +530,14 @@
           "key": "combat.status",
           "label": "Turn status line",
           "context": "Combat > every turn",
-          "value": "{name} {hp}/{max}   vs   {foe} {foe_hp}/{foe_max}",
+          "value": "{name} ({type}) {hp}/{max}   vs   {foe} ({foe_type}) {foe_hp}/{foe_max}",
           "placeholders": [
             "name",
+            "type",
             "hp",
             "max",
             "foe",
+            "foe_type",
             "foe_hp",
             "foe_max"
           ]
@@ -541,17 +546,41 @@
           "key": "combat.intent",
           "label": "Enemy intent",
           "context": "Combat > every turn",
-          "value": "{foe} is winding up: {word}.",
+          "value": "{foe} is winding up to say {word} ({type}).",
           "placeholders": [
             "foe",
-            "word"
+            "word",
+            "type"
           ]
         },
         {
           "key": "combat.menu",
           "label": "Combat menu",
           "context": "Combat > menu",
-          "value": "1. speak   2. phrase   3. switch   4. run   5. quit",
+          "value": "1. speak   2. phrase ({phrase_state})   3. switch   4. run   5. quit",
+          "placeholders": [
+            "phrase_state"
+          ]
+        },
+        {
+          "key": "combat.phrase_spent_label",
+          "label": "Phrase spent label",
+          "context": "Combat > menu",
+          "value": "spent",
+          "placeholders": []
+        },
+        {
+          "key": "combat.phrase_ready",
+          "label": "Phrase ready",
+          "context": "Combat > menu",
+          "value": "ready",
+          "placeholders": []
+        },
+        {
+          "key": "combat.first_hint",
+          "label": "First fight explainer",
+          "context": "Combat > first fight",
+          "value": "speak uses a word, phrase is one big strike per fight, switch swaps creature, run leaves.",
           "placeholders": []
         },
         {
@@ -565,7 +594,7 @@
           "key": "combat.not_a_word",
           "label": "Invalid word",
           "context": "Combat > speak",
-          "value": "That is not a word.",
+          "value": "That is not a word. Pick a number from the list.",
           "placeholders": []
         },
         {
@@ -579,15 +608,21 @@
           "key": "combat.strong",
           "label": "Strong hit",
           "context": "Combat > damage",
-          "value": "The word hits deep.",
-          "placeholders": []
+          "value": "The word hits deep - {move_type} beats {target_type}.",
+          "placeholders": [
+            "move_type",
+            "target_type"
+          ]
         },
         {
           "key": "combat.weak",
           "label": "Weak hit",
           "context": "Combat > damage",
-          "value": "The word glances off.",
-          "placeholders": []
+          "value": "The word glances off - {target_type} beats {move_type}.",
+          "placeholders": [
+            "move_type",
+            "target_type"
+          ]
         },
         {
           "key": "combat.hit",
@@ -666,9 +701,10 @@
           "key": "combat.boss_rule",
           "label": "Boss shrugs off a clever word",
           "context": "The Quiet > any turn",
-          "value": "{foe} swallows the word whole. It only flinches at plain speech.",
+          "value": "{foe} swallows the word whole. It only flinches at {word}.",
           "placeholders": [
-            "foe"
+            "foe",
+            "word"
           ]
         }
       ]
@@ -834,7 +870,7 @@
           "key": "system.commands",
           "label": "Room command line",
           "context": "Every area",
-          "value": "Commands: look, {exits}, fight, quit",
+          "value": "Commands: look, {exits}, party, help, fight, quit",
           "placeholders": [
             "exits"
           ]
